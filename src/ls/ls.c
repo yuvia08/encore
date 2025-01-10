@@ -16,13 +16,10 @@ ls(char *cwd, Mode *mode)
 	struct dirent **rdirs = 0;
 	struct stat st = {0};
 	Format format = {0};
-	EntryList entry_list = {0};
 	int entries = 0, dirs = 0, e = 0, r = 0;
 	size_t total = 0;
 	entries = make_entries(&entry, mode, cwd);
-	entry_list.entries = &entry;
-	entry_list.count = entries;
-	set_format(&entry_list, &format, mode);
+	set_format(entry, entries, &format, mode);
 	if(mode->recurse) printf("%s:\n", cwd);
 	if(mode->recurse) {
 		for(e = 0; e < entries; ++e) {

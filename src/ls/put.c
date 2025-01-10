@@ -29,17 +29,14 @@ spclen(int num)
 }
 
 void
-set_format(EntryList *entries, Format *format, Mode *mode)
+set_format(struct dirent **entry, int entries, Format *format, Mode *mode)
 {
-	int own = 0, grp = 0, count = 0, e = 0;
+	int own = 0, grp = 0, e = 0;
 	off_t siz = 0;
 	nlink_t nli = 0;
 	dev_t spc = 0;
 	struct stat st = {0};
-	struct dirent **entry = 0;
-	entry = *entries->entries;
-	count = entries->count;
-	for(e = 0; e < count; ++e) {
+	for(e = 0; e < entries; ++e) {
 		lstat(entry[e]->d_name, &st);
 		setown(mode, &st, &own);
 		setgrp(mode, &st, &grp);

@@ -24,11 +24,6 @@ typedef struct {
 	char extra_space;
 } Format;
 
-typedef struct {
-	struct dirent ***entries;
-	int count;
-} EntryList;
-
 int ls(char *, Mode *);
 
 #endif
