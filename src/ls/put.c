@@ -236,5 +236,5 @@ put_total(struct dirent **entry, int entries)
 		if(are_dot_or_dotdot(entry[e]->d_name)) continue;
 		total += st.st_blocks;
 	}
-	printf("total: %lu\n", total);
+	printf("total %lu\n", total);
 }
