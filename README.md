@@ -1,4 +1,3 @@
 # Encore
 
-coreutils!
-don't worry about it.
+very opinionated set of tools.
