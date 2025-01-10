@@ -17,25 +17,11 @@ ls(char *cwd, Mode *mode)
 	struct stat st = {0};
 	Format format = {0};
 	int entries = 0, dirs = 0, e = 0, r = 0;
-	size_t total = 0;
-	entries = make_entries(&entry, mode, cwd);
+	entries = make_entries(&entry, mode, cwd, 0);
+	dirs = make_entries(&rdirs, mode, cwd, 1);
 	set_format(entry, entries, &format, mode);
 	if(mode->recurse) printf("%s:\n", cwd);
-	if(mode->recurse) {
-		for(e = 0; e < entries; ++e) {
-			lstat(entry[e]->d_name, &st);
-			if(ISDIR(st.st_mode) && !are_dot_or_dotdot(entry[e]->d_name)) ++dirs;
-		}
-		if(dirs) rdirs = malloc(dirs * sizeof( struct dirent * ));
-	}
-	if(mode->long_out) {
-		for(e = 0; e < entries; ++e) {
-			if(are_dot_or_dotdot(entry[e]->d_name)) continue;
-			lstat(entry[e]->d_name, &st);
-			total += st.st_blocks * 512 / mode->block_size;
-		}
-		printf("total %lu\n", total);
-	}
+	if(mode->long_out) put_total(entry, entries);
 	for(e = 0, r = 0; e < entries; ++e) {
 		lstat(entry[e]->d_name, &st);
 		if(!mode->all_dots && are_dot_or_dotdot(entry[e]->d_name)) goto bad;
@@ -63,7 +49,7 @@ bad:		free(entry[e]);
 		}
 	}
 	if(!mode->newline_split && !mode->recurse) fputc('\n', stdout);
-	if(dirs) free(rdirs);
+	free(rdirs);
 	free(entry);
 	return 0;
 }

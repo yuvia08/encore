@@ -5,6 +5,6 @@
 #ifndef ___MAKE_ENTRY_H
 #define ___MAKE_ENTRY_H
 
-int make_entries(struct dirent ***, Mode *, const char *);
+int make_entries(struct dirent ***, Mode *, const char *, int);
 
 #endif

@@ -224,3 +224,17 @@ put(struct dirent *e, Format *format, Mode *mode)
 	fputc(' ', stdout);
 	return 0;
 }
+
+void
+put_total(struct dirent **entry, int entries)
+{
+	struct stat st = {0};
+	int e = 0;
+	size_t total = 0;
+	for(e = 0; e < entries; ++e) {
+		lstat(entry[e]->d_name, &st);
+		if(are_dot_or_dotdot(entry[e]->d_name)) continue;
+		total += st.st_blocks;
+	}
+	printf("total: %lu\n", total);
+}

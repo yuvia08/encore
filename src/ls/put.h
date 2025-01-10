@@ -17,5 +17,5 @@ void setname    (char **, struct stat *, Mode *) WEAK;
 int  printname  (char *, Format *);
 int  put_long   (struct dirent *, Format *, Mode *, struct stat *, char *);
 int  put        (struct dirent *, Format *, Mode *);
-
+void put_total  (struct dirent **, int);
 #endif
