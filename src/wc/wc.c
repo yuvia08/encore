@@ -137,6 +137,7 @@ wc(struct _mode *mode, struct _count *total, const char *path)
 	total->words += count.words;
 	total->chars += count.chars;
 	fclose(fp);
+	return 0;
 }
 
 int
@@ -150,6 +151,7 @@ iserror(int c, struct _state *state)
 	) {
 		return 1;
 	}
+	return 0;
 }
 
 int
@@ -160,4 +162,5 @@ put(const char *path, struct _mode *mode, struct _count *count)
 	if(mode->do_char || mode->do_utf8) printf("%lu ", count->chars);
 	if(mode->do_path) printf("%s", path);
 	fputc('\n', stdout);
+	return 0;
 }
