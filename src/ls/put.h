@@ -8,7 +8,7 @@
 
 int  numlen     (int) WEAK;
 int  spclen     (int) WEAK;
-void set_format (EntryList *, Format *, Mode *) WEAK;
+void set_format (struct dirent **, int, Format *, Mode *) WEAK;
 void setown     (Mode *, struct stat *, int *) WEAK;
 void setgrp     (Mode *, struct stat *, int *) WEAK;
 void setmark    (mode_t, char *, int) WEAK;
