@@ -18,7 +18,7 @@ ls(char *cwd, Mode *mode)
 	Format format = {0};
 	int entries = 0, dirs = 0, e = 0, r = 0;
 	entries = make_entries(&entry, mode, cwd, 0);
-	dirs = make_entries(&rdirs, mode, cwd, 1);
+	if(mode->recurse) dirs = make_entries(&rdirs, mode, cwd, 1);
 	set_format(entry, entries, &format, mode);
 	if(mode->recurse) printf("%s:\n", cwd);
 	if(mode->long_out) put_total(entry, entries);

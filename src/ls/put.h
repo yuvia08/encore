@@ -6,13 +6,12 @@
 
 #include "macros.h"
 
-int  numlen     (int) WEAK;
-int  spclen     (int) WEAK;
+int  numlen     (int);
+int  spclen     (int);
 void set_format (struct dirent **, int, Format *, Mode *) WEAK;
 void setown     (Mode *, struct stat *, int *) WEAK;
 void setgrp     (Mode *, struct stat *, int *) WEAK;
 void setmark    (mode_t, char *, int) WEAK;
-int  _should    (char, Mode *) WEAK;
 void setname    (char **, struct stat *, Mode *) WEAK;
 int  printname  (char *, Format *);
 int  put_long   (struct dirent *, Format *, Mode *, struct stat *, char *);
